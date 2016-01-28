@@ -1,6 +1,6 @@
 {WorkspaceStore,
  Thread,
- ChangeUnreadTask
+ ChangeUnreadTask,
  MailViewFilter} = require 'nylas-exports'
 
 class UnreadMailViewFilter extends MailViewFilter
@@ -18,6 +18,12 @@ class UnreadMailViewFilter extends MailViewFilter
 
   canApplyToThreads: ->
     true
+
+  canArchiveThreads: ->
+    false
+
+  canTrashThreads: ->
+    false
 
   applyToThreads: (threadsOrIds) ->
     task = new ChangeUnreadTask({threads:threadsOrIds, unread: true})
