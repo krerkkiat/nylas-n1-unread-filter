@@ -19,12 +19,6 @@ class UnreadMailViewFilter extends MailViewFilter
   canApplyToThreads: ->
     true
 
-  canArchiveThreads: ->
-    false
-
-  canTrashThreads: ->
-    false
-
   applyToThreads: (threadsOrIds) ->
     task = new ChangeUnreadTask({threads:threadsOrIds, unread: true})
     Actions.queueTask(task)

@@ -1,5 +1,4 @@
-{ComponentRegistry,
- Threads,
+{Threads,
  Actions,
  WorkspaceStore} = require 'nylas-exports'
 
