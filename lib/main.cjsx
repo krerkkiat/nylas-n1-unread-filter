@@ -10,7 +10,14 @@ module.exports =
   #
   activate: (@state) ->
     # Arbitary non-default value
-    @originalMarkAsReadDelay = -2
+    # Possible value are:
+    #   undefined : unknow reason
+    #   0         : Instantly
+    #   500       : 1/2 Second
+    #   2000      : 2 Seconds
+    #   -1        : Manually
+    #   -2        : Our arbitary value
+    @originalMarkAsReadDelay = undefined
     @unlistenFocusMailView = Actions.focusMailView.listen(@_focusMailView)
     @unlistenOpenPreferences = Actions.openPreferences.listen(@_openPreferences)
 
@@ -28,7 +35,7 @@ module.exports =
       NylasEnv.config.set('core.reading.markAsReadDelay', -1)
     else
       # Make sure that we have default value before we change it.
-      if @originalMarkAsReadDelay != -2
+      if @originalMarkAsReadDelay != undefined
         NylasEnv.config.set('core.reading.markAsReadDelay', @originalMarkAsReadDelay)
 
   _openPreferences: ->
